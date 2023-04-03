@@ -29,6 +29,7 @@ package com.rylinaux.plugman.util;
 import com.rylinaux.plugman.PlugMan;
 import com.rylinaux.plugman.api.GentleUnload;
 import com.rylinaux.plugman.api.PlugManAPI;
+import io.papermc.paper.plugin.manager.PaperPluginManagerImpl;
 import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -652,6 +653,8 @@ public class PluginUtil {
 
             if (names != null && names.containsKey(name))
                 names.remove(name);
+
+            PaperPluginManagerImpl.getInstance().removePlugin(name);
         } else {
             GentleUnload gentleUnload = PlugManAPI.getGentleUnloads().get(plugin);
             if (!gentleUnload.askingForGentleUnload())
